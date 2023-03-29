@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Directory extends FileSystemItemBase implements FileSystemItem {
-
+    private int size = 0;
     private static final String NO_ES_VALIDO_PARA_DIRECTORIOS = "No es válido para directorios";
     private final List<FileSystemItem> files;
 
@@ -39,7 +39,7 @@ public class Directory extends FileSystemItemBase implements FileSystemItem {
 
     @Override
     public int getSize() {
-        throw new UnsupportedOperationException(NO_ES_VALIDO_PARA_DIRECTORIOS);
+        return size;
     }
 
     @Override

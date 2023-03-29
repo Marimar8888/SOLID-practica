@@ -1,0 +1,26 @@
+Principio SOLID que incumple
+
+1.- El principio de segregación de interfaces
+Incumple este principio por lo siguiente:
+- Ha tenido que implementar muchos métodos que no necesita y que devuelven excepciones.
+
+2.- Principio de responsabilidad única
+Este principio que está muy relacionado con el anterior, lo incumple porque tenemos una interfaz con muchos
+métodos y por eso es difícil que las clases que lo implementen necesiten todas ellas. Se deberían hacer varias
+interfaces cada una con menos métodos y que realicen una finalidad concreta.
+
+3.- Principio de inversión de dependencias
+En la clase FileSystemPrinter.java tiene campos que hacen alusión a otra clase FileSystemBuilder y además
+está construyendo las instancias en el constructor. Estas dos cosas estarían mal, porque no está asociado
+a abstracciones, está asociado a detalles y no se podrían hacer test unitarios de esta instancia, o se ç
+complicaría mucho.
+
+La interface FileSystemItem debe estar en otra carpeta para que las abstracciones no dependan de los detalles y en este
+caso sería así.
+
+Por otro lado, debería crearse al menos una interface para la clase de la carpeta utils, FileSystemPrinter
+también fuera de la carperta utils para que las interfaces no dependan de ellas. Ya que está creando un campo
+que hace referencia a la clase FileManager. No hay abstracción y como comentaba en el primer parrafo no
+se podrían hacer test unitarios de esta instancia, o se complicaría mucho.
+
+

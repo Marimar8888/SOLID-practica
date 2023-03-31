@@ -1,8 +1,8 @@
 package com.kreitek.utils;
 
 import com.kreitek.files.Directory;
-import com.kreitek.files.FileSystemItem;
-import com.kreitek.files.FileSystemItemFile;
+import com.kreitek.interfaces.FileSystemItem;
+import com.kreitek.interfaces.FileSystemItemFile;
 import com.kreitek.service.FileManager;
 
 public class FileSystemPrinter {

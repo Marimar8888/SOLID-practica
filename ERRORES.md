@@ -25,10 +25,28 @@ caso sería así.
 
 Además la clase de alto nivel FileSystemItemBase debería estar en otra carpeta separada de las clases de bajo nivel. (Diretory y File)
 
-### 3.- Principio de abierto y cerrado
+**Solución**
+
+Creo una carpeta interfaces y pongo en ella las tres interfaces para separar de las clases de bajo nivel.
+Además cambio de carpeta a FileSystemItemBase para separar las clases de bajo nivel con las de alto nivel.
+
+
+### 4.- Principio de abierto y cerrado
 
 No está abierto a la extensión, por imcumplir estos principios anteriores.
 
 No está cerrado a la modificación por lo mismo. 
 
 Muy difícil de mantener.
+
+**Solución**
+
+De esta manera el código es extensible y modificable, con un mantenimiento más fácil.
+
+Nota: No he conseguido que me salga el resultado. He modificado partes de utils. Porque me lo pedía el IDE, pero aún así no he conseguido que funcione.
+
+Exception in thread "main" java.lang.ClassCastException: class com.kreitek.files.Directory cannot be cast to class com.kreitek.interfaces.FileSystemItem (com.kreitek.files.Directory and com.kreitek.interfaces.FileSystemItem are in unnamed module of loader 'app')
+at com.kreitek.utils.FileSystemBuilder.<init>(FileSystemBuilder.java:17)
+at com.kreitek.utils.FileSystemBuilder.getBuilder(FileSystemBuilder.java:13)
+at com.kreitek.Main.buildTestFileSystem(Main.java:37)
+at com.kreitek.Main.main(Main.java:10)

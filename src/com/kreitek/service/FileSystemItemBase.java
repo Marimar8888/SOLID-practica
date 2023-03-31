@@ -1,9 +1,7 @@
-package com.kreitek.files;
+package com.kreitek.service;
 
 import com.kreitek.files.Directory;
-import com.kreitek.files.FileSystemItem;
-
-import java.util.List;
+import com.kreitek.interfaces.FileSystemItem;
 
 public abstract class FileSystemItemBase implements FileSystemItem {
     protected static final String PATH_SEPARATOR = "/";

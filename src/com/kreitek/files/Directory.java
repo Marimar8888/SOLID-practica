@@ -1,9 +1,12 @@
 package com.kreitek.files;
 
+import com.kreitek.interfaces.FileSystemItem;
+import com.kreitek.interfaces.FileSystemItemDirectory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory  implements FileSystemItemDirectory{
+public class Directory  implements FileSystemItemDirectory {
     private int size = 0;
     private static final String NO_ES_VALIDO_PARA_DIRECTORIOS = "No es válido para directorios";
     private List<FileSystemItem> files;

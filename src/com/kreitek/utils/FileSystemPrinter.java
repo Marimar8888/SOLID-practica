@@ -2,6 +2,7 @@ package com.kreitek.utils;
 
 import com.kreitek.files.Directory;
 import com.kreitek.files.FileSystemItem;
+import com.kreitek.files.FileSystemItemFile;
 import com.kreitek.service.FileManager;
 
 public class FileSystemPrinter {
@@ -14,7 +15,7 @@ public class FileSystemPrinter {
 
     public static void print(FileSystemItem item, int nivel) {
         String indentation = "\t".repeat(nivel);
-        String message = String.format("%s%s = %d bytes", indentation, item.getFullPath(), FileManager.calculateSize(item));
+        String message = String.format("%s%s = %d bytes", indentation, item.getFullPath(), FileManager.calculateSize((FileSystemItemFile) item));
         System.out.println(message);
 
         if (item instanceof Directory) {

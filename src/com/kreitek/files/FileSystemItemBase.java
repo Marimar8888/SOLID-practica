@@ -1,5 +1,8 @@
 package com.kreitek.files;
 
+import com.kreitek.files.Directory;
+import com.kreitek.files.FileSystemItem;
+
 import java.util.List;
 
 public abstract class FileSystemItemBase implements FileSystemItem {
@@ -22,7 +25,7 @@ public abstract class FileSystemItemBase implements FileSystemItem {
         if (name == null) {
             throw new IllegalArgumentException("El nombre no puede ser nulo");
         }
-       this.name = name;
+        this.name = name;
     }
 
     @Override
@@ -41,7 +44,6 @@ public abstract class FileSystemItemBase implements FileSystemItem {
             if (directory != null) directory.addFile(this);
         }
     }
-
     @Override
     public String getFullPath() {
         String path = PATH_SEPARATOR;
@@ -53,25 +55,21 @@ public abstract class FileSystemItemBase implements FileSystemItem {
         return path;
     }
 
-    @Override
     public abstract String getExtension();
 
-    @Override
-    public abstract List<FileSystemItem> listFiles();
 
-    @Override
     public abstract int getSize();
 
-    @Override
+
     public abstract void open();
 
-    @Override
+
     public abstract void setPosition(int numberOfBytesFromBeginning);
 
-    @Override
+
     public abstract byte[] read(int numberOfBytesToRead);
 
-    @Override
+
     public abstract void write(byte[] buffer);
 
     public abstract void close();

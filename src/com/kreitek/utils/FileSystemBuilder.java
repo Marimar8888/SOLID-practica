@@ -14,12 +14,12 @@ public class FileSystemBuilder {
     }
 
     public FileSystemBuilder() {
-        root = new Directory(null, "");
+        root = (FileSystemItem) new Directory(null, "");
         currentDirectory = root;
     }
 
     public FileSystemBuilder addFile(String name, int size) {
-        FileSystemItem file = new File(currentDirectory, name);
+        FileSystemItem file = (FileSystemItem) new File(currentDirectory, name);
         file.open();
         file.write(new byte[size]);
         file.close();
@@ -28,7 +28,7 @@ public class FileSystemBuilder {
     }
 
     public FileSystemBuilder addDirectory(String name) {
-        FileSystemItem directory = new Directory(currentDirectory, name);
+        FileSystemItem directory = (FileSystemItem) new Directory(currentDirectory, name);
         currentDirectory.addFile(directory);
         currentDirectory = directory;
         return this;

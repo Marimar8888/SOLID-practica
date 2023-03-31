@@ -4,11 +4,19 @@
 
 La clase Directory, File tienen que implementar muchos métodos de FileSystemItem que no necesitan y que devuelven excepciones.
 
+*Solución**
+
+Creo dos Interfaces con el nombre de FileSystemItemFile FileSystemItemDirectori para separar los métodos e implementarlos en la clase File y Directory respectivamente.
+
+Además tanto File como Directory no heredan de la clase abstracta.
 
 ### 2.- Principio de responsabilidad única
 
 Este principio que está muy relacionado con el anterior, lo incumple porque tenemos una interfaz con muchos métodos y por eso es difícil que las clases que lo implementen necesiten todas ellas. Se deberían hacer varias interfaces cada una, con menos métodos y que realicen una finalidad concreta.
 
+**Solución**
+
+Creo dos Interfaces con el nombre de FileSystemItemFile FileSystemItemDirectori para separar los métodos e implementarlos.
 
 ### 3.- Principio de inversión de dependencias
 

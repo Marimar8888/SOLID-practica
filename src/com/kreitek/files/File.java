@@ -2,43 +2,39 @@ package com.kreitek.files;
 
 import com.kreitek.files.error.InvalidFileFormatException;
 
+
 import java.util.List;
 
-public  class File extends FileSystemItemBase implements FileSystemItem {
+
+
+
+public  class File  implements FileSystemItemFile {
 
     private int size = 0;
     private boolean isOpen = false;
     private int position = 0;
+    protected FileSystemItem parent;
+    protected String name;
+
 
     public File(FileSystemItem parent, String name) {
-        super(parent, name);
-    }
 
+        this.parent = parent;
+        this.name = name;
+
+    }
+    private String getName(String name) {
+        return name;
+    }
     @Override
     public String getExtension() {
         String extension = "";
-        int indexOfLastDot = getName().lastIndexOf(".");
+        int indexOfLastDot = getName(name).lastIndexOf(".");
         if (indexOfLastDot > 0) {
-            extension = getName().substring(indexOfLastDot + 1);
+            extension = getName(name).substring(indexOfLastDot + 1);
         }
         return extension;
     }
-
-    @Override
-    public List<FileSystemItem> listFiles() {
-        throw new UnsupportedOperationException("No es válido para ficheros");
-    }
-
-    @Override
-    public void addFile(FileSystemItem file) {
-        throw new UnsupportedOperationException("No es válido para ficheros");
-    }
-
-    @Override
-    public void removeFile(FileSystemItem file) {
-        throw new UnsupportedOperationException("No es válido para ficheros");
-    }
-
     @Override
     public int getSize() {
         return size;
@@ -48,6 +44,11 @@ public  class File extends FileSystemItemBase implements FileSystemItem {
     public void open() {
         isOpen = true;
         // Aquí vendría código que actualizaría también this.size
+    }
+
+    @Override
+    public void close() {
+        isOpen = false;
     }
 
     @Override
@@ -79,10 +80,6 @@ public  class File extends FileSystemItemBase implements FileSystemItem {
         position += buffer.length;
     }
 
-    @Override
-    public void close() {
-        isOpen = false;
-    }
 
     public FileSystemItem convertMp3ToWav() {
         if (!"mp3".equalsIgnoreCase(getExtension())) {
@@ -95,11 +92,11 @@ public  class File extends FileSystemItemBase implements FileSystemItem {
             nameWithoutExtension = name.substring(0, indexOfLastDot);
         }
         String newFileName = nameWithoutExtension + ".wav";
-        FileSystemItem result = new File(parent, newFileName);
+        FileSystemItemFile result = (FileSystemItemFile) new File(parent, newFileName);
         result.open();
         // Lógica de conversión de mp3 a wav. Se lee de este fichero y se escribe en result
         result.close();
-        return result;
+        return (FileSystemItem) result;
     }
 
     public FileSystemItem convertWavToMp3() {
@@ -113,11 +110,11 @@ public  class File extends FileSystemItemBase implements FileSystemItem {
             nameWithoutExtension = name.substring(0, indexOfLastDot);
         }
         String newFileName = nameWithoutExtension + ".mp3";
-        FileSystemItem result = new File(parent, newFileName);
+        FileSystemItemFile result = (FileSystemItemFile) new File(parent, newFileName);
         result.open();
         // Lógica de conversión de wav a mp3. Se lee de este fichero y se escribe en result
         result.close();
-        return result;
+        return (FileSystemItem) result;
     }
 
 }
